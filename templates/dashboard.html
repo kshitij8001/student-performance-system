@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Student System{% endblock %}
+
+{% block content %}
+<div class="header-actions">
+    <h2>System Overview</h2>
+    <div>
+        <a href="{{ url_for('add_department') }}" class="btn btn-outline" style="margin-right: 0.5rem; padding: 0.5rem 1rem;">+ Department</a>
+        <a href="{{ url_for('add_teacher') }}" class="btn btn-outline" style="margin-right: 0.5rem; padding: 0.5rem 1rem;">+ Teacher</a>
+        <a href="{{ url_for('add_course') }}" class="btn btn-outline" style="margin-right: 0.5rem; padding: 0.5rem 1rem;">+ Course</a>
+        <a href="{{ url_for('add_student') }}" class="btn">+ Student</a>
+    </div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;">
+    <div class="card" style="text-align: center; padding: 1.5rem;">
+        <h3 style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Departments</h3>
+        <div style="font-size: 2rem; font-weight: 700;">{{ dept_count }}</div>
+    </div>
+    <div class="card" style="text-align: center; padding: 1.5rem;">
+        <h3 style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Teachers</h3>
+        <div style="font-size: 2rem; font-weight: 700;">{{ teacher_count }}</div>
+    </div>
+    <div class="card" style="text-align: center; padding: 1.5rem;">
+        <h3 style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Courses</h3>
+        <div style="font-size: 2rem; font-weight: 700;">{{ course_count }}</div>
+    </div>
+    <div class="card" style="text-align: center; padding: 1.5rem;">
+        <h3 style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Students</h3>
+        <div style="font-size: 2rem; font-weight: 700;">{{ student_count }}</div>
+    </div>
+</div>
+
+<div class="card">
+    <h3 style="margin-bottom: 1rem;">All Students</h3>
+    {% if students %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in students %}
+            <tr>
+                <td>#{{ s.student_id }}</td>
+                <td style="font-weight: 500;">{{ s.name }}</td>
+                <td style="color: var(--text-muted);">{{ s.email or 'N/A' }}</td>
+                <td>{{ s.dept_name or 'N/A' }}</td>
+                <td>
+                    <a href="{{ url_for('student_detail', student_id=s.student_id) }}" class="btn btn-outline" style="padding: 0.4rem 0.8rem; font-size: 0.875rem;">View</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div style="text-align: center; padding: 3rem 0; color: var(--text-muted);">
+        <p>No students found. Add a student to get started.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

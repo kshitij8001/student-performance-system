@@ -1,0 +1,26 @@
+# Version Control
+.git/
+.gitignore
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Local Environment Variables & Secrets
+.env
+.env.local
+*.pem
+
+# Documentation & Scratch Files
+Project_Report.docx
+Project_Report.md
+make_docx.py
+*.log

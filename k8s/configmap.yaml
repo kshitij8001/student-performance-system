@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: student-perf-config
+  labels:
+    app: student-performance-app
+data:
+  PGHOST: "aws-1-ap-southeast-1.pooler.supabase.com"
+  PGPORT: "5432"
+  PGDATABASE: "postgres"
+  PGSSLMODE: "require"

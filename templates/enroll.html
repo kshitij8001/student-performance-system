@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Enroll {{ student.name }} - Student System{% endblock %}
+
+{% block content %}
+<div class="header-actions">
+    <h2>Enroll {{ student.name }}</h2>
+    <a href="{{ url_for('student_detail', student_id=student.student_id) }}" class="btn btn-outline">Cancel</a>
+</div>
+
+<div class="card" style="max-width: 600px;">
+    <form method="POST">
+        <div class="form-group">
+            <label for="course_id">Select Course</label>
+            <select name="course_id" id="course_id" required style="background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); color: white; border-radius: 8px; padding: 0.75rem 1rem; width: 100%;">
+                {% for c in courses %}
+                    <option value="{{ c.course_id }}">{{ c.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn">Enroll</button>
+    </form>
+</div>
+{% endblock %}
